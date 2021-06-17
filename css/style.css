@@ -401,7 +401,7 @@ h6 {
   position: fixed;
   z-index: 1;
   top: 30%;
-  left: 5%;
+  left: 1%;
   height: 238px;
   width: 35px;
 }
@@ -1543,10 +1543,6 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-  .pagination {
-    display: block;
-  }
-
   .navigation__li {
     margin-right: 58px;
   }
@@ -1938,6 +1934,10 @@ h6 {
 }
 
 @media (min-width: 1920px) {
+  .pagination {
+    display: block;
+  }
+
   .column__item_contacts {
     margin-right: 168px;
   }
