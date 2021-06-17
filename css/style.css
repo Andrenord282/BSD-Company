@@ -1543,6 +1543,10 @@ h6 {
 }
 
 @media (min-width: 1200px) {
+  .pagination {
+    display: block;
+  }
+
   .navigation__li {
     margin-right: 58px;
   }
