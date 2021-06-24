@@ -357,6 +357,24 @@ h6 {
   margin-bottom: 0px;
 }
 
+.btn__link_file {
+  width: 275px;
+  padding: 22px 50px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.btn__link_file span {
+  font-family: "gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 0.4;
+  color: #151439;
+}
+
 .title {
   color: transparent;
   -webkit-background-clip: text;
@@ -655,7 +673,7 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 34px;
+  width: 48px;
   height: 14px;
 }
 
@@ -710,6 +728,10 @@ h6 {
   -o-transition: all .5s linear;
   transition: all .5s linear;
   margin-bottom: 24px;
+}
+
+.pagination__dot:hover {
+  background-color: #1A68FF;
 }
 
 .pagination__dot:last-child {
@@ -1193,24 +1215,6 @@ h6 {
     margin: 0 auto;
   }
 
-  .btn {
-    width: 240px;
-    height: 50px;
-  }
-
-  .btn__link {
-    padding: 16px 76px;
-  }
-
-  .btn__link_form {
-    padding: 20px 78px;
-  }
-
-  .btn__contacts {
-    width: 300px;
-    height: 60px;
-  }
-
   .title__block-info {
     font-size: 40px;
     margin-bottom: 28px;
@@ -1219,21 +1223,6 @@ h6 {
 
   .title__block-info_contacts {
     letter-spacing: 0.2px;
-  }
-
-  .text__block-info {
-    font-size: 18px;
-    line-height: 28px;
-    margin-bottom: 52px;
-  }
-
-  .text__block-info_our-benefits {
-    margin-bottom: 0px;
-  }
-
-  .text__block-info_contacts {
-    color: #ffffff;
-    margin-bottom: 0px;
   }
 
   .header {
@@ -1247,85 +1236,6 @@ h6 {
   .header__logo {
     width: 62px;
     height: 29px;
-  }
-
-  .wrapper {
-    background: url(../img/bg/bg_body768.svg) no-repeat 0px 0px;
-    margin: 0 auto;
-    max-width: 768px;
-  }
-
-  .column__item_about-us {
-    padding: 78px 0 150px 0;
-  }
-
-  .column__item_our-benefits {
-    padding: 80px 0 20px 0;
-  }
-
-  .column__item_how-it-work {
-    padding: 70px 0 130px 0;
-  }
-
-  .column__item_careers {
-    padding: 120px 0 44px 0;
-  }
-
-  .column__item_contacts {
-    padding: 82px 0 50px 0;
-  }
-
-  .column__img_home {
-    max-width: 611px;
-    padding: 0px 10px;
-    margin-bottom: 30px;
-  }
-
-  .column__img_about-us {
-    -ms-flex-item-align: end;
-        align-self: flex-end;
-    max-width: 551px;
-  }
-
-  .column__img_how-it-work {
-    max-width: 733px;
-    margin-bottom: 60px;
-  }
-
-  .column__img_careers {
-    max-width: 657px;
-  }
-
-  .column__content_home {
-    -ms-flex-item-align: start;
-        align-self: flex-start;
-    max-width: 560px;
-  }
-
-  .column__content_about-us {
-    -ms-flex-item-align: start;
-        align-self: flex-start;
-    max-width: 610px;
-    margin-bottom: 26px;
-  }
-
-  .column__content_our-benefits {
-    -ms-flex-item-align: start;
-        align-self: flex-start;
-    max-width: 544px;
-    margin-bottom: 62px;
-  }
-
-  .column__content_how-it-work {
-    -ms-flex-item-align: start;
-        align-self: flex-start;
-    max-width: 624px;
-  }
-
-  .column__content_careers {
-    -ms-flex-item-align: start;
-        align-self: flex-start;
-    max-width: 622px;
   }
 
   .columns-benefits__item {
@@ -1356,10 +1266,43 @@ h6 {
 }
 
 @media (min-width: 768px) {
+  .btn {
+    width: 240px;
+    height: 50px;
+  }
+
+  .btn__link {
+    padding: 16px 76px;
+  }
+
+  .btn__link_form {
+    padding: 20px 78px;
+  }
+
+  .btn__contacts {
+    width: 300px;
+    height: 60px;
+  }
+
   .btn__contacts {
     -ms-flex-item-align: start;
         align-self: flex-start;
     margin: 0 0;
+  }
+
+  .text__block-info {
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 52px;
+  }
+
+  .text__block-info_our-benefits {
+    margin-bottom: 0px;
+  }
+
+  .text__block-info_contacts {
+    color: #ffffff;
+    margin-bottom: 0px;
   }
 
   .text__footer_map {
@@ -1453,12 +1396,91 @@ h6 {
     display: none;
   }
 
+  .wrapper {
+    background: url(../img/bg/bg_body768.svg) no-repeat 0px 0px;
+    margin: 0 auto;
+    max-width: 768px;
+  }
+
   .column__item_home {
     padding: 167px 0 30px 0;
   }
 
+  .column__item_about-us {
+    padding: 78px 0 150px 0;
+  }
+
+  .column__item_our-benefits {
+    padding: 80px 0 20px 0;
+  }
+
+  .column__item_how-it-work {
+    padding: 70px 0 130px 0;
+  }
+
+  .column__item_careers {
+    padding: 120px 0 44px 0;
+  }
+
+  .column__item_contacts {
+    padding: 82px 0 50px 0;
+  }
+
+  .column__img_home {
+    max-width: 611px;
+    padding: 0px 10px;
+    margin-bottom: 30px;
+  }
+
+  .column__img_about-us {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    max-width: 551px;
+  }
+
+  .column__img_how-it-work {
+    max-width: 733px;
+    margin-bottom: 60px;
+  }
+
+  .column__img_careers {
+    max-width: 657px;
+  }
+
   .column__content {
     padding: 0 40px;
+  }
+
+  .column__content_home {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    max-width: 560px;
+  }
+
+  .column__content_about-us {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    max-width: 610px;
+    margin-bottom: 26px;
+  }
+
+  .column__content_our-benefits {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    max-width: 544px;
+    margin-bottom: 62px;
+  }
+
+  .column__content_how-it-work {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    max-width: 624px;
+  }
+
+  .column__content_careers {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    max-width: 622px;
   }
 
   .column__content_careers {
@@ -1572,6 +1594,10 @@ h6 {
     height: 36px;
   }
 
+  .pagination {
+    display: block;
+  }
+
   .navigation__list {
     padding: 30px 80px 30px 0;
   }
@@ -1595,15 +1621,15 @@ h6 {
   }
 
   .column__item_home {
-    padding: 237px 0 0px 0;
+    padding: 237px 0 80px 0;
   }
 
   .column__item_about-us {
-    padding: 280px 0 127px 0;
+    padding: 280px 0 200px 0;
   }
 
   .column__item_our-benefits {
-    padding: 158px 0 124px 0;
+    padding: 158px 0 156px 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1617,11 +1643,11 @@ h6 {
   }
 
   .column__item_how-it-work {
-    padding: 290px 0 78px 0;
+    padding: 290px 0 223px 0;
   }
 
   .column__item_careers {
-    padding: 242px 0 40px 0;
+    padding: 242px 0 152px 0;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1714,7 +1740,7 @@ h6 {
   .column__content_our-benefits {
     -ms-flex-item-align: start;
         align-self: flex-start;
-    padding: 0px 5px 0px 18px;
+    padding: 0px 5px 0px 58px;
     max-width: 481px;
     margin-bottom: 92px;
   }
@@ -1856,7 +1882,7 @@ h6 {
   }
 
   .column__content_our-benefits {
-    padding: 0px 5px 0px 25px;
+    padding: 0px 5px 0px 78px;
     max-width: 488px;
   }
 
@@ -1901,7 +1927,7 @@ h6 {
   }
 
   .column__content_our-benefits {
-    padding: 0px 5px 0px 96px;
+    padding: 0px 5px 0px 138px;
     max-width: 559px;
   }
 
@@ -1910,12 +1936,6 @@ h6 {
     max-width: 683px;
     margin-bottom: 0px;
     margin-right: 105px;
-  }
-}
-
-@media (min-width: 1700px) {
-  .pagination {
-    display: block;
   }
 }
 
@@ -2004,12 +2024,42 @@ h6 {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  .text__block-info_home {
+    margin-bottom: 48px;
+  }
+
+  .text__block-info_about-us {
+    margin-bottom: 48px;
+  }
+
+  .text__block-info_how-it-work {
+    margin-bottom: 48px;
+  }
+
+  .text__block-info_careers {
+    margin-bottom: 48px;
+  }
+
+  .text__block-info_contacts {
+    color: #ffffff;
+  }
+
   .text-link {
     font-weight: 600;
     font-size: 20px;
   }
 
+  .contacts {
+    background-color: #2238a4;
+  }
+
+  .footer {
+    background-color: #2238a4;
+  }
+}
+
+@media (max-width: 767px) {
   .navigation {
     position: absolute;
     top: 0px;
@@ -2072,34 +2122,6 @@ h6 {
   .title__block-info_contacts {
     margin-bottom: 22px;
   }
-
-  .text__block-info_home {
-    margin-bottom: 48px;
-  }
-
-  .text__block-info_about-us {
-    margin-bottom: 48px;
-  }
-
-  .text__block-info_how-it-work {
-    margin-bottom: 48px;
-  }
-
-  .text__block-info_careers {
-    margin-bottom: 48px;
-  }
-
-  .text__block-info_contacts {
-    color: #ffffff;
-  }
-
-  .contacts {
-    background-color: #2238a4;
-  }
-
-  .footer {
-    background-color: #2238a4;
-  }
 }
 
 @media (max-width: 375px) {
@@ -2138,8 +2160,29 @@ h6 {
   }
 }
 
-@media (max-width: 390px) and (min-width: 1200px) {
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .title__block-info_our-benefits {
+    color: transparent;
+    -webkit-background-clip: text;
+            background-clip: text;
+    background-image: -webkit-gradient(linear, left top, right top, from(#1A68FF), to(#D117FF));
+    background-image: -o-linear-gradient(left, #1A68FF, #D117FF);
+    background-image: linear-gradient(to right, #1A68FF, #D117FF);
+  }
+
+  .text__block-info_our-benefits {
+    color: #393E46;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 1200px) {
   .text__block-info_contacts {
     font-size: 22px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1550px) {
+  .contacts {
+    background-color: #2238a4;
   }
 }

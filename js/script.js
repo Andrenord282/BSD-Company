@@ -9,48 +9,7 @@ btnBurgerNavigation.addEventListener('click', () =>{
     navigationBody.classList.toggle('active');
 })
 
-// Работа навигации
 
-const navigationLink = document.querySelectorAll('.navigation__link');
-
-navigationLink.forEach(function (link, i) {
-    link.addEventListener('click', () => {
-       navigationLink.forEach(function (active, i) {
-           if (active.classList.contains('active')){
-               active.classList.remove('active');
-			   
-               navNum[i].classList.remove('active');
-			   dot[i].classList.remove('active');
-
-           };
-       });
-       link.classList.add('active');
-       navNum[i].classList.add('active');
-	   dot[i].classList.add('active');
-
-
-
-
-       btnBurgerNavigation.classList.remove('active');
-       navigationBody.classList.remove('active');
-    });
-});
-
-const navDots = document.querySelectorAll('.pagination__dot');
-const navNum = document.querySelectorAll('.pagination__num');
-
-navDots.forEach(function (dot, i) {
-    dot.addEventListener('click', () => {
-       navDots.forEach(function (active, i) {
-           if (active.classList.contains('active')){
-               active.classList.remove('active');
-               navNum[i].classList.remove('active');
-           };
-       });
-       dot.classList.add('active');
-       navNum[i].classList.add('active');
-    });
-});
 
 // Работа якоря
 
@@ -187,6 +146,99 @@ btnMap.addEventListener('click', () =>{
 
 
 
+// Работа навигации
+
+const navigationLinks = document.querySelectorAll('.navigation__link');
+const paginationDots = document.querySelectorAll('.pagination__dot');
+const paginationNumbers = document.querySelectorAll('.pagination__num');
+let indexLink = [];
+
+
+function linksNavigation(){
+	navigationLinks.forEach((link, i) =>{
+			link.addEventListener('click', () => {
+			clearActiveClass(navigationLinks);
+			clearActiveClass(paginationDots);
+			clearActiveClass(paginationNumbers);
+			link.classList.add('active');
+			paginationDots[i].classList.add('active');
+			paginationNumbers[i].classList.add('active');
+			btnBurgerNavigation.classList.remove('active');
+			navigationBody.classList.remove('active');
+		});
+	});
+}
+
+function dotsNavigation(){
+	paginationDots.forEach((dot, i) =>{
+			dot.addEventListener('click', () => {
+				clearActiveClass(paginationDots);
+				clearActiveClass(navigationLinks);
+				clearActiveClass(paginationNumbers);
+				dot.classList.add('active');
+				navigationLinks[i].classList.add('active');
+				paginationNumbers[i].classList.add('active');
+		});
+	});
+}
+
+function clearActiveClass(element) {
+    element.forEach((link) => {
+        link.classList.remove('active');
+    })
+}
+
+linksNavigation();
+dotsNavigation();
+
+
+const sections = document.querySelectorAll('.section');
+let sectionHeight;
+let sectionsHeight = [];
+let coords = {};
+let sectionsCoordsTop = [];
+let sectionsCoordsBottom = [];
+
+for (const section of sections) {
+	sectionHeight = section.offsetHeight;
+	sectionsHeight.push(sectionHeight);
+	getCoords(section);
+	sectionsCoordsTop.push(getCoords(section));
+	sectionsCoordsBottom.push(getCoords(section) + sectionHeight);
+
+}
+
+function getCoords(elem) { 
+	coords =  elem.getBoundingClientRect();
+	return Math.floor((coords.top + pageYOffset));
+}
+
+
+
+function checkSection() {
+	let scrollDocument = window.scrollY;
+	const header = document.querySelector('.header');
+	headerHeight = header.clientHeight;
+	// let hiddenStart = window.innerHeight/100*45;
+
+	for (let i = 0; i < sections.length; i++) {
+		sectionCoordTop = sectionsCoordsTop[i];
+		sectionCoordBottom = sectionsCoordsBottom[i];
+		if(scrollDocument >= (sectionCoordTop - headerHeight)  && scrollDocument <= (sectionCoordBottom - headerHeight) ){
+		paginationDots[i].classList.add('active');
+		paginationNumbers[i].classList.add('active');
+		}else{
+			paginationDots[i].classList.remove('active');
+			paginationNumbers[i].classList.remove('active');
+		}
+	}
+	return scrollDocument;
+
+}
+
+
+window.addEventListener('scroll', checkSection);
+		
 
 	// Dynamic Adapt v.1
 // HTML data-da="where(uniq class name),when(breakpoint),position(digi)"
