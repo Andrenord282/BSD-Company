@@ -1,6 +1,5 @@
 
-
-	// Бургер навигация по сайту
+// Бургер навигация по сайту
 const btnBurgerNavigation = document.querySelector('.burger-nav__body');
 const navigationBody = document.querySelector('.navigation');
 
@@ -8,8 +7,6 @@ btnBurgerNavigation.addEventListener('click', () =>{
     btnBurgerNavigation.classList.toggle('active');
     navigationBody.classList.toggle('active');
 })
-
-
 
 // Работа якоря
 
@@ -30,7 +27,6 @@ for (let anchor of anchors){
 
 const btnMap = document.querySelector('.footer__map-btn');
 const contactMap = document.querySelector('.footer__map');
-
 
 let _slideUp = (target, duration = 500) => {
 	if (!target.classList.contains('_slide')) {
@@ -153,7 +149,6 @@ const paginationDots = document.querySelectorAll('.pagination__dot');
 const paginationNumbers = document.querySelectorAll('.pagination__num');
 let indexLink = [];
 
-
 function linksNavigation(){
 	navigationLinks.forEach((link, i) =>{
 			link.addEventListener('click', () => {
@@ -188,10 +183,6 @@ function clearActiveClass(element) {
     })
 }
 
-linksNavigation();
-dotsNavigation();
-
-
 const sections = document.querySelectorAll('.section');
 let sectionHeight;
 let sectionsHeight = [];
@@ -213,8 +204,6 @@ function getCoords(elem) {
 	return Math.floor((coords.top + pageYOffset));
 }
 
-
-
 function checkSection() {
 	let scrollDocument = window.scrollY;
 	const header = document.querySelector('.header');
@@ -224,203 +213,72 @@ function checkSection() {
 	for (let i = 0; i < sections.length; i++) {
 		sectionCoordTop = sectionsCoordsTop[i];
 		sectionCoordBottom = sectionsCoordsBottom[i];
-		if(scrollDocument >= (sectionCoordTop - headerHeight)  && scrollDocument <= (sectionCoordBottom - headerHeight) ){
+		if(scrollDocument > (sectionCoordTop - headerHeight)  && scrollDocument < (sectionCoordBottom - headerHeight) ){
 		paginationDots[i].classList.add('active');
 		paginationNumbers[i].classList.add('active');
+		navigationLinks[i].classList.add('active');
 		}else{
 			paginationDots[i].classList.remove('active');
 			paginationNumbers[i].classList.remove('active');
+			navigationLinks[i].classList.remove('active');
+
 		}
 	}
 	return scrollDocument;
 
 }
 
-
+linksNavigation();
+dotsNavigation();
 window.addEventListener('scroll', checkSection);
 		
+// Работа анимации
 
-	// Dynamic Adapt v.1
-// HTML data-da="where(uniq class name),when(breakpoint),position(digi)"
-// e.x. data-da=".item,992,2"
-// Andrikanych Yevhen 2020
-// https://www.youtube.com/c/freelancerlifestyle
-
-"use strict";
-
-
-function DynamicAdapt(type) {
-	this.type = type;
-}
-
-DynamicAdapt.prototype.init = function () {
-	const _this = this;
-	// массив объектов
-	this.оbjects = [];
-	this.daClassname = "_dynamic_adapt_";
-	// массив DOM-элементов
-	this.nodes = document.querySelectorAll("[data-da]");
-
-	// наполнение оbjects объктами
-	for (let i = 0; i < this.nodes.length; i++) {
-		const node = this.nodes[i];
-		const data = node.dataset.da.trim();
-		const dataArray = data.split(",");
-		const оbject = {};
-		оbject.element = node;
-		оbject.parent = node.parentNode;
-		оbject.destination = document.querySelector(dataArray[0].trim());
-		оbject.breakpoint = dataArray[1] ? dataArray[1].trim() : "767";
-		оbject.place = dataArray[2] ? dataArray[2].trim() : "last";
-		оbject.index = this.indexInParent(оbject.parent, оbject.element);
-		this.оbjects.push(оbject);
-	}
-
-	this.arraySort(this.оbjects);
-
-	// массив уникальных медиа-запросов
-	this.mediaQueries = Array.prototype.map.call(this.оbjects, function (item) {
-		return '(' + this.type + "-width: " + item.breakpoint + "px)," + item.breakpoint;
-	}, this);
-	this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, function (item, index, self) {
-		return Array.prototype.indexOf.call(self, item) === index;
-	});
-
-	// навешивание слушателя на медиа-запрос
-	// и вызов обработчика при первом запуске
-	for (let i = 0; i < this.mediaQueries.length; i++) {
-		const media = this.mediaQueries[i];
-		const mediaSplit = String.prototype.split.call(media, ',');
-		const matchMedia = window.matchMedia(mediaSplit[0]);
-		const mediaBreakpoint = mediaSplit[1];
-
-		// массив объектов с подходящим брейкпоинтом
-		const оbjectsFilter = Array.prototype.filter.call(this.оbjects, function (item) {
-			return item.breakpoint === mediaBreakpoint;
-		});
-		matchMedia.addListener(function () {
-			_this.mediaHandler(matchMedia, оbjectsFilter);
-		});
-		this.mediaHandler(matchMedia, оbjectsFilter);
-	}
-};
-
-DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
-	if (matchMedia.matches) {
-		for (let i = 0; i < оbjects.length; i++) {
-			const оbject = оbjects[i];
-			оbject.index = this.indexInParent(оbject.parent, оbject.element);
-			this.moveTo(оbject.place, оbject.element, оbject.destination);
-		}
-	} else {
-		for (let i = 0; i < оbjects.length; i++) {
-			const оbject = оbjects[i];
-			if (оbject.element.classList.contains(this.daClassname)) {
-				this.moveBack(оbject.parent, оbject.element, оbject.index);
+const animItems = document.querySelectorAll('.anim-items'); // Переменная с объектами анимации
+console.log(pageYOffset);
+if (animItems.length > 0) { // Проверка есть ли псевдомассив с элиментами
+	window.addEventListener('scroll', animOnScroll);
+	// Функция работы анимации
+	function animOnScroll () {
+		for (let index = 0; index < animItems.length; index++) { // Создаем цикл проходимся по псевдомассиву
+			const animeItem = animItems[index]; // Находим каждый элимент псевдомассива
+			const animeItemHeight = animeItem.offsetHeight // Находим высоту каждого объекта, офсетную
+			const animeItemOffsetTop = offset(animeItem).top // Находим позицию каждого элимента относительно верха страницы
+			const animeStart = 2 // Коэффицента регулировки старта анимации
+			let pageYOffset = window.pageYOffset;
+			let animItemPoint = window.innerHeight - animeItemHeight / animeStart; // Анимация срабатывает при определении высоты окна браузера минус высота элимента поделенная на коэффицент
+			
+			if (animeItemHeight > window.innerHeigh) { // Если элимент выше окна барузера
+				animItemPoint = animeItemHeight - window.innerHeight / animeStart; // Анимация срабатывает при определении высоты объекта минус высота окна браузера поделенная на коэффицент
 			}
+
+			// Если переменная с значением скрола от вехра страницы больше позиции элимента относительная верха 
+			// страинцы минус значения при котором срабатывает анимация и переменная с значением скрола от 
+			// верха страницы меньше высоты элимента плюс  значение при которой срабатывает анимация
+			if (pageYOffset > (animeItemOffsetTop - animItemPoint) && pageYOffset < (animeItemOffsetTop + animItemPoint)){
+				animeItem.classList.add('show'); // Добавляем класс шоу для элимента
+				animeItem.classList.remove('hidden'); // Убираем класс хидден для элимента
+
+			} else { // Иначе
+				animeItem.classList.remove('show'); // Убираем класс шоу для элимента
+				animeItem.classList.add('hidden'); // Добавялем класс хидден для элимента
+			}
+
 		}
 	}
-};
 
-// Функция перемещения
-DynamicAdapt.prototype.moveTo = function (place, element, destination) {
-	element.classList.add(this.daClassname);
-	if (place === 'last' || place >= destination.children.length) {
-		destination.insertAdjacentElement('beforeend', element);
-		return;
+	// Функция поиска позиции элимента относительно верха и левого края вьюпорта
+	function offset(el) {
+		const rect = el.getBoundingClientRect(), // Размер элимента и позиция относителньо вьюпорта 
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft, // Значение прокрутки в лево страницы
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Значение прокрутки вниз страницы
+		return { top: rect.top + scrollTop, // Позиция элимента относительно верха вьюпорта плюс прокрутки сверха страницы
+				left: rect.left + scrollLeft } // Позиция элимента относительно левого края вьюпорта плюс прокрутки в лево страницы
 	}
-	if (place === 'first') {
-		destination.insertAdjacentElement('afterbegin', element);
-		return;
-	}
-	destination.children[place].insertAdjacentElement('beforebegin', element);
+
+	setTimeout(() => {
+		animOnScroll();
+	}, 400);
 }
 
-// Функция возврата
-DynamicAdapt.prototype.moveBack = function (parent, element, index) {
-	element.classList.remove(this.daClassname);
-	if (parent.children[index] !== undefined) {
-		parent.children[index].insertAdjacentElement('beforebegin', element);
-	} else {
-		parent.insertAdjacentElement('beforeend', element);
-	}
-}
 
-// Функция получения индекса внутри родителя
-DynamicAdapt.prototype.indexInParent = function (parent, element) {
-	const array = Array.prototype.slice.call(parent.children);
-	return Array.prototype.indexOf.call(array, element);
-};
-
-// Функция сортировки массива по breakpoint и place 
-// по возрастанию для this.type = min
-// по убыванию для this.type = max
-DynamicAdapt.prototype.arraySort = function (arr) {
-	if (this.type === "min") {
-		Array.prototype.sort.call(arr, function (a, b) {
-			if (a.breakpoint === b.breakpoint) {
-				if (a.place === b.place) {
-					return 0;
-				}
-
-				if (a.place === "first" || b.place === "last") {
-					return -1;
-				}
-
-				if (a.place === "last" || b.place === "first") {
-					return 1;
-				}
-
-				return a.place - b.place;
-			}
-
-			return a.breakpoint - b.breakpoint;
-		});
-	} else {
-		Array.prototype.sort.call(arr, function (a, b) {
-			if (a.breakpoint === b.breakpoint) {
-				if (a.place === b.place) {
-					return 0;
-				}
-
-				if (a.place === "first" || b.place === "last") {
-					return 1;
-				}
-
-				if (a.place === "last" || b.place === "first") {
-					return -1;
-				}
-
-				return b.place - a.place;
-			}
-
-			return b.breakpoint - a.breakpoint;
-		});
-		return;
-	}
-};
-
-const da = new DynamicAdapt("max");
-da.init();
-
-console.log ('work');
-
-
-
-
-// // Проверка браузера поддержка webp
-// function testWebP(callback) {
-// 	let webP = new Image();
-// 	webP.onload = webP.onerror = function () {
-// 		callback(webP.height == 2);
-// 	};
-// 	webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
-// }
-
-// testWebP(function (support) {
-// 	if (support == true) {
-// 		document.querySelector('body').classList.add('_webp');
-// 	} else {
-// 		document.querySelector('body').classList.add('no-webp');
-// 	}
-// });
