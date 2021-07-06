@@ -260,7 +260,6 @@ const progressHeightDocument = () => {
 	}	
 
 	console.log(percentRatio);
-    animepoint.innerHTML = percentRatio;
 
 };
 
